@@ -275,7 +275,7 @@ class _CupertinoModalTransition extends StatelessWidget {
       builder: (context, child) {
         final progress = curvedAnimation.value;
         final yOffset = progress * paddingTop;
-        final scale = 1 - progress / 10;
+        final scale = 1 - progress / 20;
         final radius = progress == 0
             ? 0.0
             : (1 - progress) * startRoundCorner + progress * topRadius.x;
@@ -288,7 +288,10 @@ class _CupertinoModalTransition extends StatelessWidget {
                 scale: scale,
                 alignment: Alignment.topCenter,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(radius),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(radius),
+                    topRight: Radius.circular(radius),
+                  ),
                   child: CupertinoUserInterfaceLevel(
                     data: CupertinoUserInterfaceLevelData.elevated,
                     child: Builder(
